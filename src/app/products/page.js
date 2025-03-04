@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Cart from '../components/Cart'
 import { useRouter } from 'next/navigation'
