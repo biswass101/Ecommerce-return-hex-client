@@ -15,7 +15,6 @@ export default function page() {
   const [product, setProduct] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
-  const showCart = useSelector(state => state.carts.items)
   const disPatch = useDispatch()
   const handleClick = () => {
     const { _id, image, name, price } = product
@@ -25,7 +24,7 @@ export default function page() {
   }
 
   const fetchData = async () => {
-    const response = await fetch(`http://localhost:8000/api/products/${id}`)
+    const response = await fetch(`https://e-commrh.onrender.com/api/products/${id}`)
     const data = await response.json()
     if(!response.ok) {
       setIsLoading(false)

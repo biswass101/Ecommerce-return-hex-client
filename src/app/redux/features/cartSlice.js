@@ -31,21 +31,9 @@ export const cartSlice = createSlice({
         resetCart: (state) => {
             state.items = []
         }
-        // getTotalPrice: (state) => {
-           
-        //     if(state.items.length > 0) {
-                
-        //         let total = 0
-        //         state.items.map(item => total += item.price)
-        //         return total
-        //     }
-        //     console.log("helloe")
-        //     return 0;
-        // }
     }
 })
 export const getTotalPrice = (state) => state.carts.items.reduce((total, item) => total + item.price*item.qt, 0)
-// export const getTotalPrice = (state) => console.log(state)
 
 export const {showCarts, addToCart, delteItem, updateCart, resetCart} = cartSlice.actions;
 export default cartSlice.reducer;

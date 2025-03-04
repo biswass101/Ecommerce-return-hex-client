@@ -1,7 +1,7 @@
 'use client'
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Provider, useSelector } from "react-redux";
+import { Provider} from "react-redux";
 import store from "./redux/store";
 import { ToastContainer } from "react-toastify";
 

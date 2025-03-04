@@ -1,7 +1,7 @@
 'use client'
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { delteItem, getTotalPrice, showCarts, updateCart } from "../redux/features/cartSlice";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { delteItem, updateCart } from "../redux/features/cartSlice";
 import { CiCircleRemove } from "react-icons/ci";
 import { IoAdd } from "react-icons/io5";
 import { FaMinus, FaPlus } from "react-icons/fa";

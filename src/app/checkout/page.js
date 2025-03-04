@@ -11,11 +11,6 @@ import Navigaion from '../components/Navigaion'
 export default function Checkout() {
     const cart = useSelector(state => state.carts.items)
     const total = useSelector(getTotalPrice)
-    const searchParams = useSearchParams()
-    const cartId = searchParams.get('id')
-    console.log(cartId)
-    // console.log(cart)
-    // console.log(total)
     return (
         <>
             <Navigaion />

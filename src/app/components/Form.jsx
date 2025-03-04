@@ -26,7 +26,7 @@ export default function Form() {
     // validate,
     onSubmit: (values) => {
       axios
-        .post("http://localhost:8000/api/checkout", {
+        .post("https://e-commrh.onrender.com/api/checkout", {
           userInfo: {
             name: values.fname + " " + values.lname,
             email: values.email,
@@ -37,7 +37,7 @@ export default function Form() {
         })
         .then((data) => {
           axios
-            .delete(`http://localhost:8000/api/cart/${cartId}`)
+            .delete(`https://e-commrh.onrender.com/api/cart/${cartId}`)
             .then((res) => {
               toast("cart removed");
             })
@@ -54,7 +54,7 @@ export default function Form() {
 
   const handleNewOrder = () => {
     axios
-      .delete(`http://localhost:8000/api/cart/${cartId}`)
+      .delete(`https://e-commrh.onrender.com/api/cart/${cartId}`)
       .then((res) => {
         dispatch(resetCart())
         router.push("/");
