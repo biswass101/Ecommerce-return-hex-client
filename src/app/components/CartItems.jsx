@@ -2,7 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { delteItem, getTotalPrice, showCarts, updateCart } from "../redux/features/cartSlice";
-import { accumulate } from "../utils/acummulator";
+import { CiCircleRemove } from "react-icons/ci";
+import { IoAdd } from "react-icons/io5";
+import { FaMinus, FaPlus } from "react-icons/fa";
+
 
 export default function CartItems({total, setTotal, _id, image, name, price, qt }) {
     const [quantity, setQuantity] = useState(qt)
@@ -32,27 +35,29 @@ export default function CartItems({total, setTotal, _id, image, name, price, qt 
     }
   return (
     <>
-      <div className="cart-items-title cart-items-item grid grid-cols-6 items-center">
-        <img src={image} alt={name} className="h-15 w-15" />
+      <div className="cart-items-title cart-items-item grid grid-cols-6 items-center gap-2 px-1 text-sm md:text-lg py-2">
+        <img src={image} alt={name} className="h-10 w-10 md:h-15 md:w-15 rounded-full" />
         <p>{name}</p>
         <p>$ {price}</p>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 md:gap-2">
           <button
             onClick={handleDecremnt}
-            className="bg-slate-300 p-1 rounded-full"
+            className="hover:bg-slate-100 p-1 border rounded-full"
           >
-            -
+            <FaMinus size={10}/>
           </button>
           <p>{quantity}</p>
           <button
             onClick={handleIncrement}
-            className="bg-slate-300 p-1 rounded-full"
+            className="hover:bg-slate-100 p-1 border rounded-full"
           >
-            +
+            <FaPlus size={10}/>
           </button>
         </div>
-        <p>$ {quantity * price}</p>
-        <p onClick={() => handleRemove(_id)} className="cross">X</p>
+        <p>$ {Number(quantity * price).toFixed(2)}</p>
+        <div onClick={() => handleRemove(_id)} >
+            <CiCircleRemove className=" hover:bg-slate-300 rounded-full" size={30}/>
+        </div>
       </div>
       <hr />
     </>
