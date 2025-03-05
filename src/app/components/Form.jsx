@@ -39,7 +39,7 @@ export default function Form() {
           axios
             .delete(`https://e-commrh.onrender.com/api/cart/${cartId}`)
             .then((res) => {
-              toast("cart removed");
+              toast("Cart removed");
             })
             .catch((err) => toast(err.message));
 
@@ -58,7 +58,7 @@ export default function Form() {
       .then((res) => {
         dispatch(resetCart())
         router.push("/");
-        toast("cart removed");
+        toast("Cart removed");
       })
       .catch((err) => toast(err.message));
   };

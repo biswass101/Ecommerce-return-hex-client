@@ -19,7 +19,7 @@ export default function CartDetails() {
             .then(data => {
                 const cartId = data.data.data._id
                 router.push(`/checkout/?id=${cartId}`)
-                toast('cart procceded')
+                toast('Cart procceded')
             })
             .catch(err => console.log(err.message))
     }

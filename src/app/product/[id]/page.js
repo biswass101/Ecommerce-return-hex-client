@@ -10,7 +10,7 @@ import { FaCartPlus } from "react-icons/fa";
 import ErrorPage from "@/app/components/ErrorPage"
 import Loading from "@/app/components/Loading"
 
-export default function page() {
+export default function ProductPage() {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
