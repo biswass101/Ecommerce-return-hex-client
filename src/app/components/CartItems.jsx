@@ -3,18 +3,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { delteItem, updateCart } from "../redux/features/cartSlice";
 import { CiCircleRemove } from "react-icons/ci";
-import { IoAdd } from "react-icons/io5";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
 
-export default function CartItems({total, setTotal, _id, image, name, price, qt }) {
+export default function CartItems({_id, image, name, price, qt }) {
     const [quantity, setQuantity] = useState(qt)
-    // const cart = useSelector(state => state.carts.items)
-    // console.log(cart)
     const dispatch = useDispatch()
-    // useEffect(() => {
-
-    // }, [quantity])
     const handleRemove = (id) => {
         dispatch(delteItem(id))
     }
@@ -23,14 +17,11 @@ export default function CartItems({total, setTotal, _id, image, name, price, qt 
 
         setQuantity(quantity + 1)
         dispatch(updateCart({_id, qt: quantity+1}))
-        // setTotal(quantity * price)
     }
     const handleDecremnt = () => {
         if (quantity > 0) {
-            // setTotal(accumulate(cart))
             setQuantity(quantity - 1);
             dispatch(updateCart({_id, qt: quantity-1}))
-            // setTotal(quantity * price)
           }
     }
   return (

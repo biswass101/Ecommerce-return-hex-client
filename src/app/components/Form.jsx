@@ -1,16 +1,17 @@
 "use client";
+
 import axios from "axios";
 import { useFormik } from "formik";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTotalPrice, resetCart } from "../redux/features/cartSlice";
 import { toast } from "react-toastify";
 
-export default function Form() {
+function FormContent() {
   const cart = useSelector((state) => state.carts.items);
   const total = useSelector(getTotalPrice);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -23,7 +24,6 @@ export default function Form() {
       email: "",
       address: "",
     },
-    // validate,
     onSubmit: (values) => {
       axios
         .post("https://e-commrh.onrender.com/api/checkout", {
@@ -38,7 +38,7 @@ export default function Form() {
         .then((data) => {
           axios
             .delete(`https://e-commrh.onrender.com/api/cart/${cartId}`)
-            .then((res) => {
+            .then(() => {
               toast("Cart removed");
             })
             .catch((err) => toast(err.message));
@@ -46,8 +46,9 @@ export default function Form() {
           console.log(data.data);
         })
         .catch((err) => console.log(err.message));
-      toast("order placed successfully");
-      dispatch(resetCart())
+
+      toast("Order placed successfully");
+      dispatch(resetCart());
       router.push("/");
     },
   });
@@ -55,15 +56,16 @@ export default function Form() {
   const handleNewOrder = () => {
     axios
       .delete(`https://e-commrh.onrender.com/api/cart/${cartId}`)
-      .then((res) => {
-        dispatch(resetCart())
+      .then(() => {
+        dispatch(resetCart());
         router.push("/");
         toast("Cart removed");
       })
       .catch((err) => toast(err.message));
   };
+
   return (
-    <div className="place-order mt-2 flex flex-col items-center gap-3 ">
+    <div className="place-order mt-2 flex flex-col items-center gap-3">
       <p className="title text-xl font-bold">User Information to submit order</p>
       <form onSubmit={formik.handleSubmit}>
         <div className="flex flex-col gap-3">
@@ -107,7 +109,10 @@ export default function Form() {
               required
             />
           </div>
-          <button className="bg-yellow-300 hover:bg-yellow-400 p-1 md:p-3 rounded-xl mt-2 cursor-pointer font-semibold" type="submit">
+          <button
+            className="bg-yellow-300 hover:bg-yellow-400 p-1 md:p-3 rounded-xl mt-2 cursor-pointer font-semibold"
+            type="submit"
+          >
             Submit Order
           </button>
         </div>
@@ -119,5 +124,13 @@ export default function Form() {
         Make New Order
       </button>
     </div>
+  );
+}
+
+export default function Form() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <FormContent />
+    </Suspense>
   );
 }

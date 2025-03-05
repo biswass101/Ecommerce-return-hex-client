@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart, updateCart } from '../redux/features/cartSlice'
+import { addToCart} from '../redux/features/cartSlice'
 import { toast } from 'react-toastify'
 import { FaCartPlus } from "react-icons/fa";
 
