@@ -1,11 +1,8 @@
 'use client'
-
 import React from 'react'
 import Form from '../components/Form'
 import { useSelector } from 'react-redux'
 import { getTotalPrice } from '../redux/features/cartSlice'
-import CartItems from '../components/CartItems'
-import { useSearchParams } from 'next/navigation'
 import Navigaion from '../components/Navigaion'
 
 export default function Checkout() {
